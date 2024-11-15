@@ -28,8 +28,10 @@ function scanBarcode() {
 
             // Check if barcode data is a URL
             if (isValidUrl(barcodeData)) {
-                window.location.href = barcodeData;  // Redirect to the URL
-            }
+    output.innerHTML = `Detected URL: <a href="${barcodeData}" target="_blank">${barcodeData}</a>`;
+} else {
+    output.textContent = barcodeData;
+}
         } else {
             requestAnimationFrame(scanBarcode);
         }
