@@ -1,0 +1,15 @@
+{
+    "name": "Jacob's Barcode Reader",
+    "short_name": "Barcode",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#ffffff",
+    "description": "A PWA that reads barcodes using the camera.",
+    "icons": [
+        {
+            "src": "icon.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        }
+    ]
+}
