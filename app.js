@@ -18,17 +18,33 @@ function scanBarcode() {
         canvas.width = video.videoWidth;
         canvas.height = video.videoHeight;
         context.drawImage(video, 0, 0, canvas.width, canvas.height);
-        
+
         const imageData = context.getImageData(0, 0, canvas.width, canvas.height);
         const code = jsQR(imageData.data, imageData.width, imageData.height);
 
         if (code) {
-            output.textContent = code.data;
+            const barcodeData = code.data;
+            output.textContent = barcodeData;
+
+            // Check if barcode data is a URL
+            if (isValidUrl(barcodeData)) {
+                window.location.href = barcodeData;  // Redirect to the URL
+            }
         } else {
             requestAnimationFrame(scanBarcode);
         }
     } else {
         requestAnimationFrame(scanBarcode);
+    }
+}
+
+// Helper function to validate URL format
+function isValidUrl(string) {
+    try {
+        new URL(string);
+        return true;
+    } catch (err) {
+        return false;
     }
 }
 
